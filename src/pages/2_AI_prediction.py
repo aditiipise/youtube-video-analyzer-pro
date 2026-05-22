@@ -1,20 +1,30 @@
 import streamlit as st
-import pandas as pd
-from sklearn.linear_model import LinearRegression
 
 st.title("🤖 AI Prediction")
 
-df = pd.read_csv("youtube_data.csv")
+st.subheader("Predict YouTube Video Views")
 
-X = df[["Likes"]]
-y = df["Views"]
+title = st.text_input("Title")
 
-model = LinearRegression()
-model.fit(X, y)
+channel = st.text_input("Channel")
 
-likes = st.number_input("Enter Likes")
+duration = st.number_input(
+    "Duration (in minutes)",
+    min_value=0.0
+)
+
+upload_age = st.number_input(
+    "Upload Age (in days)",
+    min_value=0
+)
 
 if st.button("Predict Views"):
-    prediction = model.predict([[likes]])
-    
-    st.success(f"Predicted Views: {int(prediction[0])}")
+
+    predicted_views = (
+        duration * 50000
+        + upload_age * 1000
+    )
+
+    st.success(
+        f"Predicted Views: {int(predicted_views)}"
+    )
