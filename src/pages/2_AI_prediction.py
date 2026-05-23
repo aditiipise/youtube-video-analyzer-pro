@@ -2,23 +2,31 @@ import streamlit as st
 
 st.title("🤖 AI Prediction")
 
-st.subheader("Predict YouTube Video Views")
-
-title = st.text_input("Title")
-
-channel = st.text_input("Channel")
-
-duration = st.number_input(
-    "Duration (in minutes)",
-    min_value=0.0
+st.markdown(
+    "Predict YouTube video views using AI model"
 )
 
-upload_age = st.number_input(
-    "Upload Age (in days)",
-    min_value=0
-)
+col1, col2 = st.columns(2)
 
-if st.button("Predict Views"):
+with col1:
+
+    title = st.text_input("Video Title")
+
+    channel = st.text_input("Channel Name")
+
+with col2:
+
+    duration = st.number_input(
+        "Duration (minutes)",
+        min_value=0.0
+    )
+
+    upload_age = st.number_input(
+        "Upload Age (days)",
+        min_value=0
+    )
+
+if st.button("🚀 Predict Views"):
 
     predicted_views = (
         duration * 50000
@@ -26,5 +34,7 @@ if st.button("Predict Views"):
     )
 
     st.success(
-        f"Predicted Views: {int(predicted_views)}"
+        f"🔥 Predicted Views: {int(predicted_views)}"
     )
+
+    st.balloons()
